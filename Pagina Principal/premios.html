@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <title>EcoRetos - Canjear Premios</title>
+  <style>
+    body {
+      font-family: 'Montserrat', sans-serif;
+      background-color: #e7f5e6;
+      max-width: 700px;
+      margin: 30px auto;
+      padding: 20px;
+      color: #2f7d32;
+    }
+    h1 {
+      text-align: center;
+      margin-bottom: 15px;
+      font-weight: 700;
+    }
+    #perfil-btn-container {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+    #perfil-btn {
+      background-color: #2f7d32;
+      color: white;
+      border: none;
+      border-radius: 30px;
+      padding: 10px 25px;
+      font-weight: 700;
+      cursor: pointer;
+      font-size: 1em;
+      transition: background-color 0.3s;
+    }
+    #perfil-btn:hover {
+      background-color: #549a43;
+    }
+    #puntos-acumulados {
+      text-align: center;
+      font-size: 1.3em;
+      font-weight: 700;
+      margin-bottom: 25px;
+    }
+    .premio-card {
+      background: white;
+      border-radius: 12px;
+      box-shadow: 0 4px 10px rgb(47 125 50 / 0.15);
+      margin-bottom: 20px;
+      padding: 15px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 15px;
+    }
+    .premio-img {
+      width: 100px;
+      height: 100px;
+      border-radius: 12px;
+      object-fit: cover;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+      flex-shrink: 0;
+    }
+    .premio-info {
+      flex-grow: 1;
+    }
+    .premio-info h3 {
+      margin: 0 0 8px 0;
+    }
+    .premio-info p {
+      margin: 0;
+      font-weight: 600;
+      color: #4a7c32;
+    }
+    button.canjear-btn {
+      background-color: #2f7d32;
+      color: white;
+      border: none;
+      border-radius: 30px;
+      padding: 12px 25px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: background-color 0.3s;
+      user-select: none;
+      white-space: nowrap;
+    }
+    button.canjear-btn:hover {
+      background-color: #549a43;
+    }
+    button.canjear-btn:disabled {
+      background-color: #a9d18e;
+      cursor: not-allowed;
+    }
+    #mensaje {
+      text-align: center;
+      margin-top: 25px;
+      font-weight: 700;
+      color: #155724;
+      background: #d4edda;
+      padding: 15px 20px;
+      border-radius: 15px;
+      box-shadow: 0 4px 8px rgba(21, 87, 36, 0.3);
+      display: none;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>🎁 Canjea tus premios - EcoRetos</h1>
+
+  <div id="perfil-btn-container">
+    <button id="perfil-btn" onclick="window.location.href='perfil.html'">Ir a mi perfil</button>
+  </div>
+
+  <div id="puntos-acumulados">Puntos acumulados: 0</div>
+
+  <div id="catalogo-premios">
+
+  </div>
+
+  <div id="mensaje"></div>
+
+  <script>
+    const premios = [
+      {
+        id: 1,
+        nombre: "Refresco Coca-Cola 600ml",
+        puntos: 120,
+        imagen: "https://farmaciasanjorge.com/cdn/shop/files/Imagenes_de_planograma__5818360a-9405-4eac-8d58-db7d04cebbc6__07501055341344_A1L1.jpg?v=1734642063&width=2000"
+      },
+      {
+        id: 2,
+        nombre: "Botella de Agua Ciel 500ml",
+        puntos: 80,
+        imagen: "https://http2.mlstatic.com/D_756132-MLM78419939116_082024-C.jpg"
+      },
+      {
+        id: 3,
+        nombre: "Caja de Galletas",
+        puntos: 100,
+        imagen: "https://encrypted-tbn1.gstatic.com/shopping?q=tbn:ANd9GcRK_s5Irljl8zBJx7dJk7vPCNhxRFQmn1eT8rBohvzreeX990cAVXtZyPTwIk1S5JMByLRAmOoxFzAXTwLT0LCrz1yufs0TgKga0dFj6tt9sPlXsIEazWD4ZA"
+      },
+      {
+        id: 4,
+        nombre: "Café listo para tomar",
+        puntos: 150,
+        imagen: "https://images.unsplash.com/photo-1509042239860-f550ce710b93?auto=format&fit=crop&w=400&q=80"
+      },
+      {
+        id: 5,
+        nombre: "Snack de Papas",
+        puntos: 90,
+        imagen: "https://encrypted-tbn2.gstatic.com/shopping?q=tbn:ANd9GcRK34uCCXGoye1ktcP0OL8KwkD0m1rOlB9ci5YTpK7jZumkCWJpSZoYtpHWiXxLAtnATRl2oyBl4GI9UJwRGXoW9IYnArwf-XiAWxupilW5yhlgXKqGzgVBMrs"
+      }
+    ];
+
+    const puntosAcumuladosDiv = document.getElementById('puntos-acumulados');
+    const catalogoDiv = document.getElementById('catalogo-premios');
+    const mensajeDiv = document.getElementById('mensaje');
+
+    function mostrarPuntosAcumulados() {
+      const puntos = Number(localStorage.getItem('puntosAcumuladosEcoRetos') || '0');
+      puntosAcumuladosDiv.textContent = `Puntos acumulados: ${puntos}`;
+      return puntos;
+    }
+
+    function renderCatalogo() {
+      const puntos = mostrarPuntosAcumulados();
+      catalogoDiv.innerHTML = '';
+
+      premios.forEach(premio => {
+        const card = document.createElement('div');
+        card.className = 'premio-card';
+
+        card.innerHTML = `
+          <img src="${premio.imagen}" alt="${premio.nombre}" class="premio-img" />
+          <div class="premio-info">
+            <h3>${premio.nombre}</h3>
+            <p>Valor: ${premio.puntos} puntos</p>
+          </div>
+          <button class="canjear-btn" ${puntos < premio.puntos ? 'disabled' : ''} 
+            onclick="canjearPremio(${premio.id})">
+            Canjear
+          </button>
+        `;
+
+        catalogoDiv.appendChild(card);
+      });
+    }
+
+    function canjearPremio(id) {
+      const puntos = Number(localStorage.getItem('puntosAcumuladosEcoRetos') || '0');
+      const premio = premios.find(p => p.id === id);
+
+      if (!premio) return alert('Premio no encontrado.');
+      if (puntos < premio.puntos) return alert('No tienes suficientes puntos para este premio.');
+
+      const nuevosPuntos = puntos - premio.puntos;
+      localStorage.setItem('puntosAcumuladosEcoRetos', nuevosPuntos);
+
+      localStorage.setItem('premioCanjeado', JSON.stringify(premio));
+
+      mensajeDiv.textContent = `¡Has canjeado "${premio.nombre}" por ${premio.puntos} puntos! Redirigiendo...`;
+      mensajeDiv.style.display = 'block';
+
+      setTimeout(() => {
+        window.location.href = 'codigo.html';
+      }, 2000);
+    }
+
+    renderCatalogo();
+  </script>
+
+</body>
+</html>

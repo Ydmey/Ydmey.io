@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Ecoretos - Acción por el Clima</title>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Montserrat', sans-serif;
+      background-color: #f0f5f1;
+      color: #222;
+    }
+
+    header {
+      background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0,0,0,0.7)), url('https://images.unsplash.com/photo-1506765515384-028b60a970df') center/cover no-repeat;
+      color: white;
+      padding: 80px 20px;
+      text-align: left;
+      padding-left: 10%;
+    }
+
+    header h1 {
+      font-size: 3.5em;
+      color: #79f760;
+      margin-bottom: 10px;
+    }
+
+    header p {
+      font-size: 1.2em;
+      max-width: 500px;
+    }
+
+    section {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      padding: 60px 10%;
+      gap: 40px;
+    }
+
+    section:nth-child(even) {
+      flex-direction: row-reverse;
+      background-color: #ffffff;
+    }
+
+    section:nth-child(odd) {
+      background-color: #eafaf0;
+    }
+
+    .text {
+      flex: 1;
+      min-width: 300px;
+    }
+
+    .text h2 {
+      color: #2f8f46;
+      margin-bottom: 15px;
+      font-size: 2em;
+    }
+
+    .text p, .text ul {
+      font-size: 1.1em;
+      line-height: 1.7;
+    }
+
+    ul {
+      margin-top: 10px;
+      padding-left: 20px;
+    }
+
+    li {
+      margin-bottom: 10px;
+    }
+
+    .animation {
+      flex: 1;
+      min-width: 280px;
+      max-width: 400px;
+    }
+
+    .animation img {
+      width: 100%;
+      border-radius: 12px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    }
+
+    footer {
+      background-color: #111;
+      color: #aaa;
+      text-align: center;
+      padding: 30px 20px;
+      font-size: 0.9em;
+    }
+
+
+    @keyframes saltar {
+      0%, 100% {
+        transform: translateY(0);
+      }
+      50% {
+        transform: translateY(-8px);
+      }
+    }
+
+    .btn-flotante {
+      position: fixed;
+      bottom: 25px;
+      right: 25px;
+      background-color: #2f8f46;
+      color: white;
+      padding: 18px 32px;
+      font-size: 1.2em;
+      border-radius: 40px;
+      font-weight: bold;
+      box-shadow: 0 6px 18px rgba(0, 0, 0, 0.3);
+      text-decoration: none;
+      transition: 0.3s ease;
+      z-index: 1000;
+      animation: saltar 2s infinite ease-in-out;
+    }
+
+    .btn-flotante:hover {
+      background-color: #45cc6f;
+    }
+
+    .btn-flotante.oculto {
+      display: none;
+    }
+
+    @media (max-width: 768px) {
+      section {
+        flex-direction: column !important;
+        text-align: center;
+        padding: 40px 20px;
+      }
+
+      header {
+        text-align: center;
+        padding: 60px 20px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>ECORETOS</h1>
+    <p>Acción por el Clima – Objetivo 13 de la ONU. ¡Únete al cambio con retos ecológicos y recompensas verdes!</p>
+  </header>
+
+  <section>
+    <div class="text">
+      <h2>¿Quiénes somos?</h2>
+      <p>Somos una comunidad comprometida con el medio ambiente. Nuestro objetivo es promover acciones sostenibles a través de retos ecológicos que cualquier persona puede realizar en su día a día.</p>
+    </div>
+    <div class="animation">
+      <img src="https://etendencias.com/blog/wp-content/uploads/2024/06/8614787-1024x1024.jpg" alt="Comunidad ecológica" />
+    </div>
+  </section>
+
+  <section>
+    <div class="text">
+      <h2>¿En qué consiste?</h2>
+      <p>Te proponemos retos ecológicos como plantar un árbol, reducir plásticos o limpiar espacios naturales. Completa los retos, sube evidencia, gana puntos y canjea recompensas ecológicas.</p>
+    </div>
+    <div class="animation">
+      <img src="https://saberesyciencias.com.mx/wp-content/uploads/2021/05/p15-.jpeg" alt="Plantar árbol" />
+    </div>
+  </section>
+
+  <section>
+    <div class="text">
+      <h2>¿Cómo funciona?</h2>
+      <p>Sigue estos pasos para participar:</p>
+      <ul>
+        <li>Revisa los retos disponibles en la plataforma.</li>
+        <li>Elige uno que puedas cumplir en tu entorno.</li>
+        <li>Realiza el reto y documenta tu acción.</li>
+        <li>Sube la evidencia a tu perfil.</li>
+        <li>Gana puntos y desbloquea recompensas.</li>
+      </ul>
+    </div>
+    <div class="animation">
+      <img src="https://cdn.shortpixel.ai/spai/w_898+q_+ret_img+to_webp/https://www.eude.es/wp-content/uploads/2020/10/Dise%C3%B1o-sin-t%C3%ADtulo-53-820x450.png" alt="Pasos para participar" />
+    </div>
+  </section>
+
+  <section>
+    <div class="text">
+      <h2>Objetivo 13: Acción por el Clima</h2>
+      <p>Nos alineamos con los Objetivos de Desarrollo Sostenible de la ONU, especialmente el número 13, que nos insta a tomar medidas urgentes para combatir el cambio climático y sus efectos.</p>
+    </div>
+    <div class="animation">
+      <img src="https://images.controlshift.app/rails/active_storage/representations/proxy/eyJfcmFpbHMiOnsiZGF0YSI6MTE1ODkyLCJwdXIiOiJibG9iX2lkIn19--24d8bf9c0f77ad12d0e8cfecb96d431e40339030/eyJfcmFpbHMiOnsiZGF0YSI6eyJmb3JtYXQiOiJqcGciLCJzdHJpcCI6dHJ1ZSwicmVzaXplX3RvX2ZpdCI6WzEwMjQsNTEyXX0sInB1ciI6InZhcmlhdGlvbiJ9fQ==--2cb192ad8affe4eaa156c50800ecc00cefb4d200/dia-mundial-reciclaje-2018.jpg" alt="Objetivo 13 ONU" />
+    </div>
+  </section>
+
+  <footer>
+    <p>© 2025 Ecoretos. Todos los derechos reservados.</p>
+  </footer>
+
+  <a href="login.html" class="btn-flotante oculto">🌱 Comienza ahora</a>
+
+  <script>
+    const btn = document.querySelector('.btn-flotante');
+    btn.classList.add('oculto');
+
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 100) {
+        btn.classList.remove('oculto');
+      } else {
+        btn.classList.add('oculto');
+      }
+    });
+  </script>
+</body>
+</html>

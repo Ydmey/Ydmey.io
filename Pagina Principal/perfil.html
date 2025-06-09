@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <title>Perfil de Usuario - EcoRetos</title>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Montserrat', sans-serif;
+      background-color: #f0f5f1;
+      margin: 0;
+      padding: 0;
+      color: #2f7d32;
+    }
+
+    header {
+      background-color: #2f7d32;
+      color: white;
+      padding: 30px 20px;
+      text-align: center;
+    }
+
+    header h1 {
+      margin: 0;
+      font-size: 2.5em;
+    }
+
+    .perfil-container {
+      max-width: 600px;
+      margin: 40px auto;
+      background-color: white;
+      padding: 30px;
+      border-radius: 15px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      text-align: center;
+    }
+
+    .avatar {
+      width: 100px;
+      height: 100px;
+      background-color: #cdeecd;
+      border-radius: 50%;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 20px;
+      font-size: 3em;
+      color: #2f7d32;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+    }
+
+    .perfil-container h2 {
+      font-size: 2em;
+      margin-bottom: 10px;
+    }
+
+    .perfil-container p {
+      font-size: 1.2em;
+      margin-bottom: 20px;
+    }
+
+    .puntos {
+      background-color: #d4edda;
+      color: #155724;
+      padding: 15px;
+      border-radius: 10px;
+      font-weight: bold;
+      font-size: 1.3em;
+      margin-bottom: 30px;
+      box-shadow: 0 2px 6px rgba(21, 87, 36, 0.2);
+    }
+
+    .menu {
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+    }
+
+    .menu a {
+      text-decoration: none;
+      background-color: #2f7d32;
+      color: white;
+      padding: 15px;
+      border-radius: 30px;
+      font-weight: bold;
+      transition: background-color 0.3s;
+    }
+
+    .menu a:hover {
+      background-color: #45cc6f;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>Perfil de Usuario</h1>
+  </header>
+
+  <div class="perfil-container">
+    <div class="avatar">👤</div>
+    <h2>Equipo: <span id="nombre-usuario">Chips</span></h2>
+    <div class="puntos" id="puntos-acumulados">Puntos acumulados: 0</div>
+
+    <div class="menu">
+      <a href="retos.html">Ver Retos</a>
+      <a href="premios.html">Ver Premios</a>
+    </div>
+  </div>
+
+  <script>
+    
+    const equipo = localStorage.getItem('equipoEcoRetos') || 'chips';
+    document.getElementById('nombre-usuario').textContent = equipo;
+
+
+    const puntos = localStorage.getItem('puntosAcumuladosEcoRetos') || '0';
+    document.getElementById('puntos-acumulados').textContent = `Puntos acumulados: ${puntos}`;
+  </script>
+
+</body>
+</html>
