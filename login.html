@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Login - Ecoretos</title>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Montserrat', sans-serif;
+      background-color: #f0f5f1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+    }
+    .login-box {
+      background-color: white;
+      padding: 40px;
+      border-radius: 16px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+      text-align: center;
+      width: 100%;
+      max-width: 400px;
+    }
+    input {
+      display: block;
+      width: 100%;
+      padding: 12px;
+      margin: 10px 0;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      font-size: 1em;
+    }
+    button {
+      background-color: #2f8f46;
+      color: white;
+      padding: 12px;
+      border: none;
+      border-radius: 8px;
+      font-weight: bold;
+      width: 100%;
+      cursor: pointer;
+    }
+    .alerta {
+      color: red;
+      margin-bottom: 10px;
+      display: none;
+    }
+  </style>
+</head>
+<body>
+  <div class="login-box">
+    <h2>Inicia sesión</h2>
+    <div id="alerta" class="alerta"></div>
+    <form id="loginForm">
+      <input type="text" id="usuario" placeholder="Usuario">
+      <input type="password" id="contrasena" placeholder="Contraseña">
+      <button type="submit">Entrar</button>
+    </form>
+  </div>
+
+  <script>
+    document.getElementById("loginForm").addEventListener("submit", function(e) {
+      e.preventDefault();
+      const usuario = document.getElementById("usuario").value.trim();
+      const contrasena = document.getElementById("contrasena").value.trim();
+      const alerta = document.getElementById("alerta");
+
+      if (!usuario || !contrasena) {
+        alerta.textContent = "Por favor, completa todos los campos.";
+        alerta.style.display = "block";
+        return;
+      }
+
+      if (usuario === "equipo" && contrasena === "1234") {
+        window.location.href = "perfil.html";
+      } else {
+        alerta.textContent = "Usuario o contraseña incorrectos.";
+        alerta.style.display = "block";
+      }
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <title>EcoRetos - Código para Canje</title>
+  <style>
+    body {
+      font-family: 'Montserrat', sans-serif;
+      background-color: #e7f5e6;
+      max-width: 600px;
+      margin: 40px auto;
+      padding: 20px;
+      color: #2f7d32;
+      text-align: center;
+    }
+    h1 {
+      font-weight: 700;
+      margin-bottom: 10px;
+    }
+    h2 {
+      font-weight: 500;
+      margin-bottom: 20px;
+      font-size: 1em;
+      color: #3f6633;
+    }
+    #premio-nombre {
+      font-size: 1.4em;
+      margin-bottom: 15px;
+      font-weight: 600;
+      color: #4a7c32;
+    }
+    #codigo {
+      font-size: 1.3em;
+      font-weight: 700;
+      margin-bottom: 30px;
+      letter-spacing: 3px;
+      user-select: all;
+    }
+    canvas {
+      margin-bottom: 40px;
+    }
+    button {
+      background-color: #2f7d32;
+      color: white;
+      border: none;
+      padding: 15px 30px;
+      border-radius: 30px;
+      cursor: pointer;
+      font-weight: 700;
+      font-size: 1.2em;
+      transition: background-color 0.3s;
+      user-select: none;
+    }
+    button:hover {
+      background-color: #549a43;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Tu código para canjear el premio</h1>
+  <h2>En tu OXXO más cercano</h2>
+  <div id="premio-nombre"></div>
+  <canvas id="barcode"></canvas>
+  <div id="codigo"></div>
+  <button onclick="volver()">Volver al catálogo</button>
+
+  <script src="https://cdn.jsdelivr.net/npm/jsbarcode@3.11.5/dist/JsBarcode.all.min.js"></script>
+  <script>
+    const premioCanjeadoJSON = localStorage.getItem('premioCanjeado');
+    if (!premioCanjeadoJSON) {
+      alert('No hay premio canjeado.');
+      window.location.href = 'premios.html';
+    }
+    const premio = JSON.parse(premioCanjeadoJSON);
+
+
+    document.getElementById('premio-nombre').textContent = premio.nombre;
+
+    function generarCodigo(longitud = 10) {
+      const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
+      let result = '';
+      for(let i=0; i<longitud; i++) {
+        result += chars.charAt(Math.floor(Math.random() * chars.length));
+      }
+      return result;
+    }
+
+    const codigo = generarCodigo();
+    document.getElementById('codigo').textContent = codigo;
+
+    JsBarcode("#barcode", codigo, {
+      format: "CODE128",
+      width: 2,
+      height: 80,
+      displayValue: false,
+      margin: 10
+    });
+
+    function volver() {
+      localStorage.removeItem('premioCanjeado');
+      window.location.href = 'premios.html';
+    }
+  </script>
+
+</body>
+</html>
